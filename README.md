@@ -32,3 +32,16 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
     >
 
 # **Entrega 2:**
+<li>
+    <a  href=""
+      >Diagrama de Atividades</a
+    >
+<li>
+    <a  href=""
+      >Programação em Par</a
+    >
+<li>
+    <a  href=""
+      >Screencast</a
+    >
+

@@ -31,4 +31,4 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
       >Link do Screencast</a
     >
 
-
+# **Entrega 2:**

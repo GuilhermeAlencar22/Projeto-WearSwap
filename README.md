@@ -40,7 +40,7 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
       >Diagrama de Atividades</a
     >
 <li>
-    <a  href=""
+    <a  href="https://docs.google.com/document/d/1GmJtcXv2q5WcUING2zp2Km0j-QE0DyZBxpFneqbbH8E/edit?usp=sharing"
       >Programação em Par</a
     >
 <li>

@@ -33,7 +33,8 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
 
 # **Entrega 2:**
 * Quadro do Jira (3 historias selecionadas):
-![image](https://github.com/gantonioo003/Projeto-WearSwap/assets/163006803/5695b6fb-095d-49a4-8ffd-f158b8594b30)
+![image](https://github.com/gantonioo003/Projeto-WearSwap/assets/163006803/1c5b6dce-1dab-4e9c-ab74-868cb0919664)
+
 
 <li>
     <a  href="https://lucid.app/lucidchart/3c5c69a7-1308-44c6-8146-03539aea1a33/edit?viewport_loc=22%2C155%2C1575%2C884%2C0_0&invitationId=inv_3be3bc24-f39a-4178-9a7e-95ae67003d25"

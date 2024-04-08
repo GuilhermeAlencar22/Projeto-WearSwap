@@ -32,7 +32,7 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-          cd Wear_Swap/
+          cd wear_swap/
           rm db.sqlite3
           rm .env
           cd ..
@@ -41,7 +41,7 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd Wear_Swap/
+          cd wear_swap/
           zip release.zip ./* -r
           cd ..
           mv SEUPROJETODJANGO/release.zip .

@@ -44,7 +44,7 @@ jobs:
           cd wear_swap/
           zip release.zip ./* -r
           cd ..
-          mv SEUPROJETODJANGO/release.zip .
+          mv wear_swap/release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3

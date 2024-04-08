@@ -28,7 +28,7 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r Wear_Swap/requirements.txt
+        run: pip install -r wear_swap/requirements.txt
 
       - name: Cleaning testing files
         run: |

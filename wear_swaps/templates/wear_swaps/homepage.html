@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Azul claro */
+            color: #333; /* Cor do texto */
+            font-family: Arial, sans-serif; /* Fonte do texto */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333; /* Cor do título */
+            text-align: left;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 24px;
+            color: #333; /* Cor do título */
+            margin-top: 30px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff; /* Azul */
+            color: #fff; /* Cor do texto */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a.button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Azul */
+            color: #fff; /* Cor do texto */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        a.button:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Página Inicial</h1>
+        
+        <!-- Formulário de pesquisa -->
+        <form method="GET" action="">
+            {% csrf_token %}
+            <input type="text" name="keyword" placeholder="Digite sua pesquisa">
+            <button type="submit">Pesquisar</button>
+            <a href="{% url 'filtro' %}" class="button">Filtro de busca</a>
+        </form>
+        
+        <!-- Resultados da pesquisa -->
+        {% if resultados %}
+        <h2>Resultados da Pesquisa:</h2>
+        <ul>
+            {% for produto in resultados %}
+            <li>{{ produto.nome }}</li>
+            <!-- Adicione outros detalhes do produto conforme necessário -->
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <p>Esta é a página inicial do seu site. Você pode personalizá-la conforme suas necessidades.</p>
+        <p>Exemplo de conteúdo:</p>
+        <ul>
+            <li>Apresentar informações sobre sua loja de revenda de roupas.</li>
+            <li>Listar os produtos em destaque.</li>
+            <li>Oferecer links para diferentes seções do site.</li>
+        </ul>
+
+        <!-- Adicione um botão para a página de ver produtos -->
+        <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
+    </div>
+</body>
+</html>
+
+

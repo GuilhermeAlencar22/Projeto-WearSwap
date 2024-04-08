@@ -1,0 +1,90 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #e1f0ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+ }
+ 
+ 
+ h1 {
+    color: #0056b3;
+    font-size: 37px; /* Tamanho aumentado */
+    margin-top: 40px; /* Espaço aumentado do topo */
+    margin-bottom: 2rem; /* Espaço aumentado abaixo do título */
+    width: 100%;
+    text-align: center;
+ }
+ 
+ 
+ form {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    margin-top: 20px;
+ }
+ 
+ 
+ input[type="text"],
+ input[type="number"] {
+    width: calc(100% - 1.5rem);
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #007bff;
+    border-radius: 0.25rem;
+    font-size: 16px;
+    background-color: #d9e8ff;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+ }
+ 
+ 
+ input[type="text"]:focus,
+ input[type="number"]:focus {
+    border-color: #0056b3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+ }
+ 
+ 
+ /* Adicionando o efeito de hover para os inputs */
+ input[type="text"]:hover,
+ input[type="number"]:hover {
+    background-color: #b3d1ff; /* Mudança de cor ao passar o mouse */
+ }
+ 
+ 
+ input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+ }
+ 
+ 
+ input[type="submit"]:hover {
+    background-color: #0056b3;
+ }
+ 
+ 
+ @media (max-width: 576px) {
+    body, form {
+        padding: 1rem;
+    }
+ 
+ 
+    h1 {
+        margin-top: 20px; /* Ajustado para dispositivos móveis */
+    }
+ }
+ 

@@ -33,7 +33,8 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
 
 # **Entrega 2:**
 * Quadro do Jira (3 historias selecionadas):
-![image](https://github.com/gantonioo003/Projeto-WearSwap/assets/163006803/1c5b6dce-1dab-4e9c-ab74-868cb0919664)
+![image](https://github.com/gantonioo003/Projeto-WearSwap/assets/127979584/ac67807b-8036-4f15-b642-280033e686a9)
+
 
 
 <li>

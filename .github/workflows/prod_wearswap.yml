@@ -22,6 +22,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up Node.js version
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
       - name: Create and start virtual environment
         run: |
           python -m venv venv
@@ -86,4 +91,3 @@ jobs:
         with:
           app-name: 'WEARSWAP'
           slot-name: 'Production'
-          

@@ -49,4 +49,7 @@ Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por 
     <a  href="https://youtu.be/VbFW_NRJ8p8?si=6nHEIilFxEZzQa1S"
       >Screencast</a
     >
-
+<li>
+    <a  href="https://wearswap.azurewebsites.net/"   
+     >Azure</a>
+     

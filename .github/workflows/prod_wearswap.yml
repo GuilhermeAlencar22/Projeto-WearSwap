@@ -27,11 +27,11 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r Wear_Swap/requirements.txt
+        run: pip install -r wearswap/requirements.txt
 
       - name: Cleaning testing files
         run: |
-          cd Wear_Swap/
+          cd wearswap/
           rm -f db.sqlite3
           rm -f .env
           cd ..
@@ -40,10 +40,10 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd Wear_Swap/
+          cd wearswap/
           zip -r release.zip ./*
           cd ..
-          mv Wear_Swap/release.zip .
+          mv wearswap/release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3

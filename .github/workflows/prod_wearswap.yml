@@ -27,11 +27,11 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r wear_swap/requirements.txt
+        run: pip install -r ws_env/requirements.txt
 
       - name: Cleaning testing files
         run: |
-          cd wear_swap/
+          cd ws_env/
           rm -f db.sqlite3
           rm -f .env
           cd ..
@@ -40,10 +40,10 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd wear_swap/
+          cd ws_env/
           zip -r release.zip ./*
           cd ..
-          mv wear_swap/release.zip .
+          mv ws_env/release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
@@ -58,7 +58,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write
 
     steps:
       - name: Download artifact from build job
@@ -68,16 +68,17 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6403F3A4A58243D6938A85B83A69A8B4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_445385BB3A8547DD98F336D7DBD45FE8 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7E3676958FAF42F0BF33780C4A3DB153 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
         with:
           app-name: 'WEARSWAP'
           slot-name: 'Production'
-          package: release.zip

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loja Criada</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        /* Estilos específicos para os detalhes do produto */
+        .product-details {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details p {
+            font-size: 16px;
+        }
+
+        .product-details p:first-child {
+            font-weight: bold;
+        }
+
+        .product-details p:nth-child(odd) {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalhes do Produto Criado</h1>
+        <div class="product-details">
+            <p>Loja: {{ produto.loja }}</p>
+            <p>Categoria: {{ produto.categoria }}</p>
+            <p>Número: {{ produto.estado }}</p>
+            <p>Idade: {{ produto.preco }}</p>
+            <p>Descrição: {{ produto.descricao }}</p>
+        </div>
+    </div>
+</body>
+</html>

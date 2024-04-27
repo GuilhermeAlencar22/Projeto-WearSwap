@@ -63,33 +63,34 @@ def register_view(request):
 
 
 def ver_produto(request):
-   if request.method == "GET":
-       form = ProdutoForm()
-       return render(request, 'wear_swaps/ver_produto.html', {'form': form})
-   elif request.method == "POST":
-       form = ProdutoForm(request.POST)
-       if form.is_valid():
-           # Cria uma instância do modelo Produto mas não salva ainda no banco de dados
-           novo_produto = Produto(
-               loja=form.cleaned_data['loja'],
-               categoria=form.cleaned_data['categoria'],
-               estado=form.cleaned_data['estado'],
-               preco=form.cleaned_data['preco'],
-               descricao=form.cleaned_data['descricao']
-           )
-          
-           # Salva o novo produto no banco de dados
-           novo_produto.save()
-           # Redireciona para a página de confirmação
-           return redirect('produto_inserido')
-       else:
-           # Se o formulário for inválido, renderize a página novamente com o formulário
-           return render(request, 'wear_swaps/produto_inserido.html', {'form': form})
-      
+    if request.method == "GET":
+        form = ProdutoForm()
+        return render(request, 'wear_swaps/ver_produto.html', {'form': form})
+    elif request.method == "POST":
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            novo_produto = Produto(
+                loja=form.cleaned_data['loja'],
+                categoria=form.cleaned_data['categoria'],
+                estado=form.cleaned_data['estado'],
+                preco=form.cleaned_data['preco'],
+                descricao=form.cleaned_data['descricao']
+            )
+            novo_produto.save()
+            # Passa o ID do produto criado para a próxima página
+            return redirect('produto_inserido', produto_id=novo_produto.id)
+        else:
+            return render(request, 'wear_swaps/ver_produto.html', {'form': form})
 
 
-def produto_inserido(request):
-   return render(request, 'wear_swaps/produto_inserido.html')
+def ver_loja_criada(request, produto_id):
+    produto = Produto.objects.get(id=produto_id)
+    return render(request, 'wear_swaps/loja_criada.html', {'produto': produto})
+
+def produto_inserido(request, produto_id):
+    # Adiciona um botão para visualizar a loja criada
+    return render(request, 'wear_swaps/produto_inserido.html', {'produto_id': produto_id})
+
 
 
 

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Compras</title>
+</head>
+<body>
+    <h1>Histórico de Compras</h1>
+    {% if compras %}
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantidade</th>
+                <th>Data da Compra</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in compras %}
+            <tr>
+                <td>{{ compra.produto.descricao }}</td>
+                <td>{{ compra.quantidade }}</td>
+                <td>{{ compra.data_compra }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Não há compras registradas.</p>
+    {% endif %}
+    
+    <a href="{% url 'espernado lui' %}">Voltar para o Perfil do Usuário</a>
+</body>
+</html>

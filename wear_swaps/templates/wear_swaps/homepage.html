@@ -97,18 +97,24 @@
         </ul>
         {% endif %}
 
-        <p>Esta é a página inicial do seu site. Você pode personalizá-la conforme suas necessidades.</p>
-        <p>Exemplo de conteúdo:</p>
+        <p>Esta é a página inicial do nosso site.Podemos personalizá-la conforme nossas necessidades.</p>
+        <p>Exemplos de conteúdos:</p>
         <ul>
-            <li>Apresentar informações sobre sua loja de revenda de roupas.</li>
+            <li>Apresentar informações sobre nossa loja de revenda de roupas.</li>
             <li>Listar os produtos em destaque.</li>
             <li>Oferecer links para diferentes seções do site.</li>
         </ul>
 
         <!-- Adicione um botão para a página de ver produtos -->
         <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
+        
+        <!-- Adicione um botão para a página de configurações -->
+        <form method="GET" action="{% url 'configuracoes' %}">
+            <button type="submit" class="button">Configurações</button>
+        </form>
     </div>
 </body>
 </html>
+
 
 

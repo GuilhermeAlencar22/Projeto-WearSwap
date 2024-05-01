@@ -24,6 +24,21 @@ class RegisteredUserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user
+    
+class RegisteredUser(AbstractBaseUser):
+    username = models.CharField(max_length=150, unique=True)
+    full_name = models.CharField(max_length=255, blank=True)
+    email = models.EmailField(max_length=255, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+
+    objects = RegisteredUserManager()
+
+    USERNAME_FIELD = 'username'
+
+    def __str__(self):
+        return self.username
+
 
 class RegisteredUser(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
@@ -35,8 +50,6 @@ class RegisteredUser(AbstractBaseUser):
     def __str__(self):
         return self.username
     
-
-
 class Produto(models.Model):
    loja = models.CharField(max_length=100)
    categoria = models.CharField(max_length=100)
@@ -51,7 +64,6 @@ class Produto(models.Model):
    
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -63,12 +75,21 @@ class ClothingItem(models.Model):
 
 
 
-
 class Produto1(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     # Adicione outros campos conforme necessário
+
+
+class Compra(models.Model):
+    usuario = models.ForeignKey(RegisteredUser, on_delete=models.CASCADE)
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField(default=1)  # Quantidade comprada
+    data_compra = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Compra de {self.quantidade}x {self.produto.descricao} por {self.usuario.username} em {self.data_compra}"
 
 
 

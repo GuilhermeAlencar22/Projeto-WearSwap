@@ -30,12 +30,65 @@
         }
         form {
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
         input[type="text"] {
-            width: 300px;
+            flex: 1;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-right: 10px;
+        }
+        .menu-icon {
+            display: block;
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s ease;
+        }
+        .menu-icon::before {
+            top: -10px;
+        }
+        .menu-icon::after {
+            top: 10px;
+        }
+        .menu-icon.open::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+        .menu-icon.open::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+        .menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 998;
+        }
+        .menu.show {
+            display: block;
         }
         button[type="submit"] {
             padding: 10px 20px;
@@ -72,11 +125,45 @@
         a.button:hover {
             background-color: #0056b3; /* Azul mais escuro */
         }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card {
+            width: calc(33.33% - 20px);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            font-size: 18px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #777;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Página Inicial</h1>
+
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         
         <!-- Formulário de pesquisa -->
         <form method="GET" action="">
@@ -89,32 +176,37 @@
         <!-- Resultados da pesquisa -->
         {% if resultados %}
         <h2>Resultados da Pesquisa:</h2>
-        <ul>
+        <div class="cards">
             {% for produto in resultados %}
-            <li>{{ produto.nome }}</li>
-            <!-- Adicione outros detalhes do produto conforme necessário -->
+            <div class="card">
+                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
+                <h3>{{ produto.nome }}</h3>
+                <p>{{ produto.descricao }}</p>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
         {% endif %}
 
-        <p>Esta é a página inicial do nosso site.Podemos personalizá-la conforme nossas necessidades.</p>
-        <p>Exemplos de conteúdos:</p>
-        <ul>
-            <li>Apresentar informações sobre nossa loja de revenda de roupas.</li>
-            <li>Listar os produtos em destaque.</li>
-            <li>Oferecer links para diferentes seções do site.</li>
-        </ul>
-
-        <!-- Adicione um botão para a página de ver produtos -->
-        <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
-        
-        <!-- Adicione um botão para a página de configurações -->
-        <form method="GET" action="{% url 'configuracoes' %}">
-            <button type="submit" class="button">Configurações</button>
-        </form>
+        <!-- Menu suspenso -->
+        <div class="menu" id="menu">
+            <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
+            
+            <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+            
+            <form method="GET" action="{% url 'configuracoes' %}">
+                <button type="submit" class="button">Configurações</button>
+            </form>
+        </div>
     </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+            var menuIcon = document.querySelector('.menu-icon');
+            menuIcon.classList.toggle("open");
+        }
+    </script>
 </body>
 </html>
-
-
-

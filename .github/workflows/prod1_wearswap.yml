@@ -77,7 +77,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'wear_swaps'
+          app-name: 'WearSwap'
           slot-name: 'Production'
 
       - name: Cleaning testing files

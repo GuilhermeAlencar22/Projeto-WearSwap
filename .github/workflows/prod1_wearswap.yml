@@ -28,16 +28,16 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run:  pip install -r Projeto-WearSwap/requirements.txt
+        run:  pip install -r loja_wear/requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
         run: |
-          cd Projeto-WearSwap/
+          cd loja_wear/
           zip release.zip ./* -r
           cd ..
-          mv Projeto-WearSwap/release.zip .
+          mv loja_wear/release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
@@ -77,12 +77,12 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'WearSwap'
+          app-name: 'wear_swaps'
           slot-name: 'Production'
 
       - name: Cleaning testing files
         run: |
-          cd Projeto-WearSwap/
+          cd loja_wear/
           rm db.sqlite3
           rm .env
           cd ..

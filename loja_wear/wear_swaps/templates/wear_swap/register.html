@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Azul claro */
+            color: #333; /* Cor do texto */
+            font-family: Arial, sans-serif; /* Fonte do texto */
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            font-size: 24px;
+            color: #333; /* Cor do título */
+            text-align: center;
+            margin-top: 0;
+        }
+        form {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* Fundo branco */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff; /* Azul */
+            color: #fff; /* Cor do texto */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+        p {
+            text-align: center;
+            margin-top: 10px;
+        }
+        a {
+            color: #007bff; /* Azul */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registrar</h2>
+    <!-- Adicione o formulário de registro aqui -->
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+        <label for="password1">Password:</label> <!-- Alterado para 'password1' -->
+        <input type="password" name="password1" required><br>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" name="password2" required><br>
+        <input type="submit" value="Register">
+    </form>
+    <p>Já tem uma conta? <a href="{% url 'login' %}">Fazer login</a></p>
+</body>
+</html>
+
+
+

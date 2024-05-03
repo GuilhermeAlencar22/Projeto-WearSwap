@@ -80,10 +80,10 @@ jobs:
           app-name: 'WearSwap'
           slot-name: 'Production'
 
-      - name: Cleaning testing files
-        run: |
-          cd loja_wear/
-          rm db.sqlite3
-          rm .env
-          cd ..
+      #- name: Cleaning testing files
+       # run: |
+         # cd loja_wear/
+         # rm db.sqlite3
+         # rm .env
+         # cd ..
           

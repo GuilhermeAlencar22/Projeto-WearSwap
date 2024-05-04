@@ -16,6 +16,7 @@ if NOT_PROD:
     DEBUG = True
     SECRET_KEY = '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '169.254.129.4']
+    CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'http://169.254.129.4']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -27,7 +28,7 @@ else:
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
-    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'https://wearswap.azurewebsites.net').split(',')
 
     SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
     if SECURE_SSL_REDIRECT:

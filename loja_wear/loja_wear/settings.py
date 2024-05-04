@@ -41,7 +41,8 @@ if NOT_PROD:
         }
     }
 else:
-    SECRET_KEY = os.getenv('django-insecure-66lkg&hc$nnk3l39o4-18xaz$uj9@s5w8bsv6c2n*t)&frbq*j')
+    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>')
+
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')

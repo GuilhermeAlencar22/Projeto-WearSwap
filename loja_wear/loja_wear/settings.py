@@ -2,12 +2,12 @@ from pathlib import Path
 import os 
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Construindo caminhos dentro do projeto como: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
-# Define o ambiente de produção ou não, baseado na variável de ambiente TARGET_ENV
+# Define se o ambiente é de produção ou não, baseado na variável de ambiente TARGET_ENV
 TARGET_ENV = os.getenv('TARGET_ENV')
 NOT_PROD = not TARGET_ENV.lower().startswith('prod1')
 
@@ -26,8 +26,8 @@ else:
     # Configurações para ambiente de produção
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'wearswap.azurewebsites.net').split(',') + ['wearswap.azurewebsites.net']
-    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+    ALLOWED_HOSTS = ['wearswap.azurewebsites.net']  # Aqui adicionamos explicitamente o domínio necessário
+    CSRF_TRUSTED_ORIGINS = ['https://wearswap.azurewebsites.net']  # Adicionado explicitamente o domínio como confiável para CSRF
 
     SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
     if SECURE_SSL_REDIRECT:
@@ -43,6 +43,7 @@ else:
             'OPTIONS': {'sslmode': 'require'},
         }
     }
+
 
 
 # Application definition

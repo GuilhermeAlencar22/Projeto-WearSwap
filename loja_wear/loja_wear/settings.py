@@ -9,12 +9,12 @@ load_dotenv(BASE_DIR / '.env')
 
 # Define o ambiente de produção ou não, baseado na variável de ambiente TARGET_ENV
 TARGET_ENV = os.getenv('TARGET_ENV')
-NOT_PROD = not TARGET_ENV.lower().startswith('prod1')
+NOT_PROD = not TARGET_ENV or not TARGET_ENV.lower().startswith('prod')
 
 if NOT_PROD:
     # Configurações para ambiente de desenvolvimento
     DEBUG = True
-    SECRET_KEY = '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>'
+    SECRET_KEY = 'your_development_secret_key_here'  # Substitua por sua chave real de desenvolvimento
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '169.254.129.4']
     CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'http://169.254.129.4']
     DATABASES = {
@@ -25,10 +25,10 @@ if NOT_PROD:
     }
 else:
     # Configurações para ambiente de produção
-    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>')
+    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
-    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'https://wearswap.azurewebsites.net').split(',')
+    ALLOWED_HOSTS = ['wearswap.azurewebsites.net'] + os.getenv('ALLOWED_HOSTS', '').split(',')
+    CSRF_TRUSTED_ORIGINS = ['https://wearswap.azurewebsites.net'] + os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
     SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
     if SECURE_SSL_REDIRECT:
@@ -46,7 +46,6 @@ else:
     }
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -90,7 +89,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'loja_wear.wsgi.application'
 
 # Password validation
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -107,14 +105,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-
 LANGUAGE_CODE = 'pt-BR'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-
 STATICFILES_DIRS = [BASE_DIR/'static']
 STATIC_URL = os.getenv('DJANGO_STATIC_URL', "/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

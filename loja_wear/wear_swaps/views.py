@@ -206,7 +206,6 @@ def alterar_senha_view(request):
     return render(request, 'wear_swap/alterar_senha.html')
 
 
-
 def historico_compras(request):
     if request.user.is_authenticated:
         compras = Compra.objects.filter(usuario=request.user).order_by('-data_compra')
@@ -232,8 +231,9 @@ def delete_account(request):
     user.delete()
     logout(request)
     messages.success(request, f'Sua conta, {username}, foi excluída com sucesso.')
-    return redirect('account_deleted')  # Redireciona para a página de confirmação
+    return redirect('login')  # Redireciona para a página de confirmação
 
 def account_deleted(request):
-    message = messages.get_messages(request)  # Recupera mensagens para passar para o template
-    return render(request, 'account_deleted.html', {'messages': message})
+    print(os.path.join(settings.BASE_DIR, 'templates'))  # Verifique o caminho do diretório
+    messages = messages.get_messages(request)
+    return render(request, 'account_deleted.html', {'messages': messages})

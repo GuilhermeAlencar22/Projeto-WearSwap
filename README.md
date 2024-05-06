@@ -67,3 +67,6 @@
     <a  href="https://youtu.be/sqd23AeqQYA?si=yGYbneIIr8igLU2p"
       >Screencast - (build e deployment)</a
     >
+<li>
+    <a  href="https://wearswap.azurewebsites.net/"   
+     >Azure</a>

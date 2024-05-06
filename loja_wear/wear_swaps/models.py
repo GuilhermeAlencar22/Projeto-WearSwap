@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, User
-
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 class RegisteredUserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -21,27 +20,24 @@ class RegisteredUserManager(BaseUserManager):
 
 class RegisteredUser(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
+    age = models.PositiveIntegerField(null=True, blank=True)  # Campo de idade opcional
+    bio = models.TextField(max_length=500, blank=True)  # Biografia do usuário
 
     USERNAME_FIELD = 'username'
+    objects = RegisteredUserManager()
 
-    objects = RegisteredUserManager() 
-
-    def _str_(self):
+    def __str__(self):
         return self.username
 
 class Produto(models.Model):
-   loja = models.CharField(max_length=100)
-   categoria = models.CharField(max_length=100)
-   estado = models.CharField(max_length=100)
-   preco = models.DecimalField(max_digits=10, decimal_places=2)
-   descricao = models.CharField(max_length=1000, default='Sem descrição')
+    loja = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
+    estado = models.CharField(max_length=100)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    descricao = models.CharField(max_length=1000, default='Sem descrição')
 
-
-  
-   def __str__(self):
-       return f"Nome da loja: {self.loja} - Nome completo: {self.descricao} - Nicho: {self.categoria} - Telefone: {self.estado} - Idade:{self.preco}"
-   
-
+    def __str__(self):
+        return f"{self.loja} - {self.descricao}"
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -52,23 +48,16 @@ class ClothingItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
 
-
-
 class Produto1(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=8, decimal_places=2)
-    # Adicione outros campos conforme necessário
-
 
 class Compra(models.Model):
     usuario = models.ForeignKey(RegisteredUser, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantidade = models.PositiveIntegerField(default=1)  # Quantidade comprada
+    quantidade = models.PositiveIntegerField(default=1)
     data_compra = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Compra de {self.quantidade}x {self.produto.descricao} por {self.usuario.username} em {self.data_compra}"
-
-
-

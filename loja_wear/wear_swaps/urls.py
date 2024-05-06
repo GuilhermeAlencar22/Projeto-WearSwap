@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib import admin
+from .views import delete_account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,4 +14,6 @@ urlpatterns = [
     path('filtro/', views.filtro, name='filtro'),
     path('configuracoes/', views.configuracoes_view, name='configuracoes'),
     path('alterar_senha/', views.alterar_senha_view, name='alterar_senha'),
+    path('delete_account/', views.delete_account, name='delete_account'),
+    path('account_deleted/', views.account_deleted, name='account_deleted'),
 ]

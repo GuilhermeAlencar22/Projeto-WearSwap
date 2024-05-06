@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from .models import RegisteredUser, Produto, ClothingItem
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.http import HttpResponse
 from .forms import ProdutoForm, SearchForm # type: ignore
 from django.urls import path
@@ -9,9 +9,8 @@ from .models import Compra
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-
-
-
+from django.views.decorators.http import require_POST
+from django.utils.html import escape
 
 
 def login_view(request):
@@ -160,3 +159,17 @@ def dados_pessoais_view(request):
         # Trate o caso em que o usuário não está autenticado
         # Você pode redirecionar para a página de login ou exibir uma mensagem de erro
         pass
+
+
+@require_POST
+def delete_account(request):
+    user = request.user
+    username = user.username  # Captura o nome de usuário para mostrar na mensagem
+    user.delete()
+    logout(request)
+    messages.success(request, f'Sua conta, {username}, foi excluída com sucesso.')
+    return redirect('account_deleted')  # Redireciona para a página de confirmação
+
+def account_deleted(request):
+    message = messages.get_messages(request)  # Recupera mensagens para passar para o template
+    return render(request, 'account_deleted.html', {'messages': message})

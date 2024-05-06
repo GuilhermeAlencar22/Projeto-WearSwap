@@ -30,10 +30,18 @@
         .config-option:hover {
             background-color: #f2f2f2;
         }
-        /* Estilo para remover o sublinhado do link */
-        .config-option a {
+        .config-option a, .config-option form {
+            display: block; /* Faz com que o link e o formulário ocupem toda a área do .config-option */
             text-decoration: none;
             color: black; /* Mudar a cor do link para preto */
+        }
+        button {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -45,10 +53,13 @@
         <div class="config-option"><a href="{% url 'alterar_senha' %}">Alterar Senha</a></div>
         <div class="config-option" onclick="location.href='URL_CARTAO_CREDITO'">Cartão de Crédito</div>
         <div class="config-option" onclick="location.href='URL_NOTIFICACOES'">Notificações</div>
-        <div class="config-option" onclick="location.href='URL_EXCLUIR_CONTA'">Excluir Conta</div>
-
+        <div class="config-option">
+            <form action="{% url 'delete_account' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir sua conta?')">Excluir Conta</button>
+            </form>
+        </div>
         <a href="{% url 'homepage' %}"><button>Voltar para página inicial</button></a>
     </div>
 </body>
 </html>
-

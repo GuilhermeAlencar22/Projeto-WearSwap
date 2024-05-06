@@ -44,10 +44,10 @@ else:
         }
     }
 
-
+# Adicione esta linha para especificar o modelo de usuário personalizado
+AUTH_USER_MODEL = 'wear_swaps.RegisteredUser'
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -91,7 +91,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'loja_wear.wsgi.application'
 
 # Password validation
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -108,14 +107,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-
 LANGUAGE_CODE = 'pt-BR'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-
 STATICFILES_DIRS = [BASE_DIR/'static']
 STATIC_URL = os.getenv('DJANGO_STATIC_URL', "/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

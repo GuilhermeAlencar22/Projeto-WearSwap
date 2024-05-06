@@ -60,6 +60,6 @@
       >Programação em Par</a
     >
 <li>
-    <a href="https://drive.google.com/drive/my-drive"
+    <a href="https://drive.google.com/file/d/1RcB4zNQT88b4wf7xadvuRT5S0ThJXAiC/view?usp=sharing"
       >Diagrama de Atividades</a
     >

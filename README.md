@@ -54,4 +54,7 @@
      >Azure</a>
 
 # **Entrega 3:**
-     
+<li>
+    <a  href="https://docs.google.com/document/d/1GmJtcXv2q5WcUING2zp2Km0j-QE0DyZBxpFneqbbH8E/edit?usp=sharing"
+      >Programação em Par</a
+    >

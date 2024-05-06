@@ -206,7 +206,7 @@
     <div style="margin-bottom: 10px;"></div>
 
     {% if produto and produto.id %}
-        <a href="{% url 'ver_loja_criada' produto_id=produto.id %}">Ver Loja</a>
+        <a href="{% url 'ver_loja_criada' produto_id=produto.id %}" class="button">Ver Loja</a>
     {% else %}
         <a href="#" onclick="alert('Produto não definido. Não é possível visualizar a loja.'); return false;">Ver Loja</a>
     {% endif %}

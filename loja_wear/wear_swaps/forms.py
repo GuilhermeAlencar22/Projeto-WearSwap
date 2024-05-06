@@ -1,4 +1,5 @@
 from django import forms
+from .models import Item
 
 class ProdutoForm(forms.Form):
     loja = forms.CharField(label='Nome da loja', max_length=100)
@@ -12,3 +13,9 @@ class ProdutoForm(forms.Form):
 
 class SearchForm(forms.Form):
     keyword = forms.CharField(label='Palavra-chave', max_length=100)
+
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['tipo_produto', 'tamanho', 'condicao', 'descricao', 'foto']   

@@ -55,6 +55,11 @@
             <p>Idade: {{ produto.preco }}</p>
             <p>Descrição: {{ produto.descricao }}</p>
         </div>
+        <div class="button-container">
+            <a href="{% url 'ver_item' produto_id=produto.id %}">
+                <button>Adicionar Item</button>
+            </a>
+        </div>
     </div>
 </body>
 </html>

@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.utils.html import escape
+from .forms import ItemForm
 
 
 def login_view(request):
@@ -55,16 +56,24 @@ def homepage(request):
 
 def register_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password1']  # Alterado para 'password1'
-        # Crie um novo objeto do modelo de usuário com os dados fornecidos
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
+
+        
+        if RegisteredUser.objects.filter(username=username).exists():
+            messages.error(request, 'Este nome de usuário já está em uso. Por favor, escolha outro.')
+            return render(request, 'wear_swap/register.html')
+
+        
         new_user = RegisteredUser.objects.create_user(username=username, password=password)
-        # Faça login automaticamente no novo usuário
         login(request, new_user)
-        return redirect('login')  # Redireciona para a página de login após o registro
-    else:
-        return render(request, 'wear_swap/register.html')  # Renderize a página de registro
-    
+        messages.success(request, 'Registro realizado com sucesso! Bem-vindo ao nosso site.')
+        return redirect('login') 
+
+    return render(request, 'wear_swap/register.html')
+
+def ajuda_view(request):
+    return render(request, 'wear_swap/ajuda_ao_cliente.html')
 
 
 def ver_produto(request):
@@ -94,6 +103,20 @@ def produto_inserido(request, produto_id):
 def ver_loja_criada(request, produto_id):
     produto = Produto.objects.get(id=produto_id)
     return render(request, 'wear_swap/loja_criada.html', {'produto': produto})
+
+
+def ver_item(request, produto_id):
+    produto = Produto.objects.get(id=produto_id)
+    if request.method == 'POST':
+        form = ItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            novo_item = form.save(commit=False)
+            novo_item.produto = produto
+            novo_item.save()
+            return redirect('produto_inserido', produto_id=produto.id)
+    else:
+        form = ItemForm()
+    return render(request, 'wear_swap/ver_item.html', {'form': form, 'produto': produto})
 
 
 

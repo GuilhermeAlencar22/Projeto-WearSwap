@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib import admin
 from .views import delete_account
+from .views import ver_item
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,4 +17,6 @@ urlpatterns = [
     path('alterar_senha/', views.alterar_senha_view, name='alterar_senha'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('account_deleted/', views.account_deleted, name='account_deleted'),
+    path('ver_item/<int:produto_id>/', ver_item, name='ver_item'),
+    path('ajuda/', views.ajuda_view, name='ajuda'),
 ]

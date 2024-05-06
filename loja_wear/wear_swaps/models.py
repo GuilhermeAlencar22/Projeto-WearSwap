@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, User
+
 
 class RegisteredUserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -20,14 +21,13 @@ class RegisteredUserManager(BaseUserManager):
 
 class RegisteredUser(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
-    age = models.PositiveIntegerField(null=True, blank=True)  # Campo de idade opcional
-    bio = models.TextField(max_length=500, blank=True)  # Biografia do usuário
 
     USERNAME_FIELD = 'username'
-    objects = RegisteredUserManager()
 
-    def __str__(self):
-        return self.username
+    objects = RegisteredUserManager() 
+
+    def _str_(self):
+        return self.username 
 
 class Produto(models.Model):
     loja = models.CharField(max_length=100)
@@ -61,3 +61,26 @@ class Compra(models.Model):
 
     def __str__(self):
         return f"Compra de {self.quantidade}x {self.produto.descricao} por {self.usuario.username} em {self.data_compra}"
+
+
+class Item(models.Model):
+    TIPOS_PRODUTO = (
+        ('calca', 'Calça'),
+        ('bermuda', 'Bermuda'),
+        ('camisa', 'Camisa'),
+        ('tenis', 'Tênis'),
+        ('acessorio', 'Acessório'),
+    )
+    TIPOS_TAMANHO = (
+        ('PP', 'PP'),
+        ('P', 'P'),
+        ('M', 'M'),
+        ('G', 'G'),
+        ('GG', 'GG'),
+    )
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    tipo_produto = models.CharField(max_length=20, choices=TIPOS_PRODUTO)
+    tamanho = models.CharField(max_length=5, choices=TIPOS_TAMANHO, null=True, blank=True)
+    condicao = models.CharField(max_length=20)
+    descricao = models.TextField()
+    foto = models.ImageField(upload_to='items', null=True, blank=True)

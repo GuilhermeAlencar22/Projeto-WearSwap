@@ -153,6 +153,9 @@
             color: #777;
             margin: 0;
         }
+        .menu a.button {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -197,6 +200,19 @@
             <form method="GET" action="{% url 'configuracoes' %}">
                 <button type="submit" class="button">Configurações</button>
             </form>
+
+            <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <button type="submit" class="button">Sair</button>
+            </form>
+
+            <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+
+            <a href="{% url 'ajuda' %}" class="button">Ajuda</a>
         </div>
     </div>
 

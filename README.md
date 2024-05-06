@@ -55,6 +55,6 @@
 
 # **Entrega 3:**
 <li>
-    <a  href="https://docs.google.com/document/d/1GmJtcXv2q5WcUING2zp2Km0j-QE0DyZBxpFneqbbH8E/edit?usp=sharing"
+    <a  href="https://docs.google.com/document/d/1dCjxH8XB-fSjEt7VYkY9LbazcxeweqXQML0tD2o9LEE/edit?hl=pt-br"
       >Programação em Par</a
     >

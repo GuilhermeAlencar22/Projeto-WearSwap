@@ -1,6 +1,6 @@
 # Projeto-WearSwap
 # Sobre:
- Olá esse é o repositório do projeto WearSwap! Um aplicativo desenvolvido por alunos da Cesar Scool, da disciplina de Fundamentos de Software. O papel do WearSwap é voltado para a troca ou venda de roupas. Sua função principal é proporcionar uma plataforma onde usuários possam conectar-se para negociar ou trocar vestuários usados ou novos
+ Olá, este é o repositório do projeto WearSwap! Um aplicativo desenvolvido por alunos da Cesar School, da disciplina de Fundamentos de Software. O papel do WearSwap é voltado para a troca ou venda de roupas. Sua função principal é proporcionar uma plataforma onde usuários possam conectar-se para negociar ou trocar vestuários usados ou novos.
 # Equipe:
 * Guilherme Alencar (gaac@cesar.school)
 * Rodrigo Tenorio (rblt@cesar.school)
@@ -8,6 +8,7 @@
 * Gabriel Antonio (gaor@cesar.schol)
 * Caio Sena (css4@cesar.school)
 * Lui Manso (lvmq@cesar.school)
+
 <p>Links </p>
     <li>
     <a  href="https://wearswap.atlassian.net/jira/software/projects/KAN/boards/1"
@@ -32,7 +33,7 @@
     >
 
 # **Entrega 2:**
-* Quadro do Jira (3 historias selecionadas):
+* Quadro do Jira (3 histórias selecionadas):
 ![image](https://github.com/gantonioo003/Projeto-WearSwap/assets/127979584/ac67807b-8036-4f15-b642-280033e686a9)
 
 
@@ -58,3 +59,4 @@
     <a  href="https://docs.google.com/document/d/1dCjxH8XB-fSjEt7VYkY9LbazcxeweqXQML0tD2o9LEE/edit?hl=pt-br"
       >Programação em Par</a
     >
+

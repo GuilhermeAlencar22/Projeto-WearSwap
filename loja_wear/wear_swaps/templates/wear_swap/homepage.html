@@ -110,7 +110,7 @@
         li {
             margin-bottom: 10px;
         }
-        a.button {
+        a.button, a.special-button {
             text-decoration: none;
             display: inline-block;
             padding: 10px 20px;
@@ -122,8 +122,14 @@
             font-size: 16px;
             margin-right: 10px;
         }
-        a.button:hover {
+        a.button:hover, a.special-button:hover {
             background-color: #0056b3; /* Azul mais escuro */
+        }
+        a.special-button { /* Estilo específico para 'Ver a Loja Criada' */
+            background-color: #28a745; /* Verde */
+        }
+        a.special-button:hover {
+            background-color: #218838; /* Verde mais escuro */
         }
         .cards {
             display: flex;
@@ -153,6 +159,9 @@
             color: #777;
             margin: 0;
         }
+        .menu a.button {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -172,6 +181,8 @@
             <button type="submit">Pesquisar</button>
             <a href="{% url 'filtro' %}" class="button">Filtro de busca</a>
         </form>
+
+        
         
         <!-- Resultados da pesquisa -->
         {% if resultados %}
@@ -193,12 +204,28 @@
             
             <!-- Adicionando uma separação -->
             <div style="margin-bottom: 10px;"></div>
+        
+            <a href="{% url 'ver_loja_criada' produto_id %}" class="button">Ver Loja Criada</a>
+        
+            <div style="margin-bottom: 10px;"></div>
             
             <form method="GET" action="{% url 'configuracoes' %}">
                 <button type="submit" class="button">Configurações</button>
             </form>
+        
+            <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+        
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <button type="submit" class="button">Sair</button>
+            </form>
+        
+            <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+        
+            <a href="{% url 'ajuda' %}" class="button">Ajuda</a>
         </div>
-    </div>
 
     <script>
         function toggleMenu() {

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens na Loja</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Itens na Sua Loja</h1>
+        <ul>
+            {% for item in itens %}
+                <li>
+                    <strong>Tipo:</strong> {{ item.tipo_produto }}<br>
+                    <strong>Descrição:</strong> {{ item.descricao }}<br>
+                    <strong>Preço:</strong> {{ item.preco }}<br>
+                    <strong>condicao:</strong> {{ item.condicao }}<br>
+                    <strong>Tamanho:</strong> {{ item.tamanho }}<br>
+                    <!-- Adicione mais campos conforme necessário -->
+                    <img src="{{ item.foto.url }}" alt="Imagem do Item"><br>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+        <br>
+        <a href="{% url 'ver_item' produto_id=produto.id %}"><button>Adicionar Item</button></a>
+        <br>
+        <br>
+        <a href="{% url 'produto_inserido' produto_id=produto.id %}"><button>Voltar para a Página da Loja</button></a>
+        <br>
+        <br>
+        <a href="{% url 'homepage' %}"><button>Voltar para página inicial</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ajuda ao Cliente</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f0f8ff; /* Azul claro */
+         margin: 0;
+         padding: 0;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         height: 100vh;
+      }
+
+      h1 {
+         font-size: 24px;
+         color: #007bff; /* Azul */
+         margin-bottom: 20px;
+      }
+
+      .faq-section {
+         width: 100%;
+         max-width: 800px;
+         background-color: #fff; /* Branco */
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+         margin-bottom: 30px;
+      }
+
+      .contact-section {
+         width: 100%;
+         max-width: 800px;
+         background-color: #fff; /* Branco */
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+         margin-bottom: 30px;
+      }
+
+      .guide-section {
+         width: 100%;
+         max-width: 800px;
+         background-color: #fff; /* Branco */
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+      }
+
+      a {
+         text-decoration: none;
+         color: #007bff; /* Azul */
+         transition: color 0.3s;
+      }
+
+      a:hover {
+         color: #0056b3; /* Azul mais escuro */
+      }
+   </style>
+</head>
+<body>
+   <h1>Ajuda ao Cliente</h1>
+
+   <!-- Seção de Perguntas Frequentes -->
+   <div class="faq-section">
+      <h2>Perguntas Frequentes:</h2>
+      <ol>
+         <li><strong>Como faço para criar uma loja?</strong><br>
+            Para criar uma loja, vá para a página "Minha Loja" e preencha o formulário com as informações solicitadas. Depois de preencher o formulário, clique em "Enviar" para criar sua loja.</li>
+         <li><strong>Como posso adicionar produtos à minha loja?</strong><br>
+            Depois de criar sua loja, você pode adicionar produtos acessando a página de gerenciamento de produtos. Lá, você encontrará um formulário onde pode inserir as informações do produto.</li>
+         <li><strong>Esqueci minha senha. Como posso recuperá-la?</strong><br>
+            Se você esqueceu sua senha, vá para a página de login e clique no link "Esqueceu sua senha?". Siga as instruções enviadas para recuperar sua senha.</li>
+         <li><strong>Como posso editar minhas informações de perfil?</strong><br>
+            Você pode editar suas informações de perfil acessando a página "Dados Pessoais". Lá, você encontrará um formulário onde pode atualizar suas informações.</li>
+      </ol>
+   </div>
+
+   <!-- Seção de Informações de Contato -->
+   <div class="contact-section">
+      <h2>Informações de Contato:</h2>
+      <p><strong>Suporte por E-mail:</strong> Se precisar de assistência adicional, entre em contato pelo e-mail: <a href="mailto:suporte@seudominio.com">suporte@seudominio.com</a>.</p>
+      <p><strong>Telefone de Suporte:</strong> Para suporte por telefone, ligue para: +XX XXXX-XXXX.</p>
+   </div>
+
+   <!-- Seção de Guias de Uso -->
+   <div class="guide-section">
+      <h2>Guias de Uso:</h2>
+      <p><strong>Guia do Vendedor:</strong> Se você é um vendedor, confira nosso guia do vendedor para obter dicas úteis sobre como criar e gerenciar sua loja, adicionar produtos, configurar métodos de pagamento, etc.</p>
+      <p><strong>Guia do Comprador:</strong> Se você é um comprador novo, consulte nosso guia do comprador para aprender como navegar pelo site, fazer compras, pagar pelos produtos, etc.</p>
+   </div>
+
+   <a href="{% url 'homepage' %}"><button>Voltar para página inicial</button></a>
+</body>
+</html>

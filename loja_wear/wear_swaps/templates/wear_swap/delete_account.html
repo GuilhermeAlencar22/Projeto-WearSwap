@@ -1,0 +1,14 @@
+{% extends 'configuracoes.html' %} <!-- Substitua 'base_generic.html' pelo seu template base, se houver. -->
+
+{% block content %}
+<div class="container">
+    <h1>Excluir Conta</h1>
+    <p>Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.</p>
+
+    <form action="{% url 'delete_account' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a href="{% url 'settings' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

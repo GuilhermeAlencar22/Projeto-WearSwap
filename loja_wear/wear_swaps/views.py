@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegisteredUser, Produto, ClothingItem
 from django.contrib.auth import login, logout
 from django.http import HttpResponse
@@ -43,16 +43,37 @@ def login_view(request):
 
 
 def homepage(request):
-    if request.method == 'GET':
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            keyword = form.cleaned_data['keyword']
-            # Filtra os produtos com base na palavra-chave
-            resultados = Produto.objects.filter(descricao__icontains=keyword)
-            return render(request, 'wear_swap/homepage.html', {'form': form, 'resultados': resultados})
-    else:
-        form = SearchForm()
-    return render(request, 'wear_swap/homepage.html', {'form': form})
+    # Cria uma instância do formulário para ser usada em solicitações GET e não-GET.
+    form = SearchForm(request.GET or None)
+    
+    # Inicializa a variável de resultados para que esteja disponível no contexto, mesmo se não houver pesquisa.
+    resultados = None
+    
+    # Tenta buscar o último produto criado para passar o produto_id para o template.
+    # Isto é útil para gerar URLs que necessitam de produto_id, como "Ver Loja Criada".
+    try:
+        ultimo_produto = Produto.objects.latest('id')
+        produto_id = ultimo_produto.id
+    except Produto.DoesNotExist:
+        produto_id = None  # Caso não haja produtos, define produto_id como None.
+    
+    if request.method == 'GET' and form.is_valid():
+        # Extrai a palavra-chave limpa do formulário
+        keyword = form.cleaned_data['keyword']
+        # Filtra os produtos com base na palavra-chave
+        resultados = Produto.objects.filter(descricao__icontains=keyword)
+    
+    # Prepara o contexto com o formulário, resultados e produto_id.
+    context = {
+        'form': form,
+        'resultados': resultados,
+        'produto_id': produto_id  # Adiciona o produto_id ao contexto para uso no template.
+    }
+    
+    # Renderiza a mesma página com o formulário, os resultados (se houver) e o produto_id.
+    return render(request, 'wear_swap/homepage.html', context)
+
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -101,7 +122,8 @@ def produto_inserido(request, produto_id):
     return render(request, 'wear_swap/produto_inserido.html', {'produto_id': produto_id})
 
 def ver_loja_criada(request, produto_id):
-    produto = Produto.objects.get(id=produto_id)
+    # Utiliza get_object_or_404 para lidar com IDs que não existem
+    produto = get_object_or_404(Produto, id=produto_id)
     return render(request, 'wear_swap/loja_criada.html', {'produto': produto})
 
 
@@ -113,10 +135,29 @@ def ver_item(request, produto_id):
             novo_item = form.save(commit=False)
             novo_item.produto = produto
             novo_item.save()
-            return redirect('produto_inserido', produto_id=produto.id)
+            return redirect('item_inserido', produto_id=produto.id)  # Redirecionar para item_inserido
     else:
         form = ItemForm()
     return render(request, 'wear_swap/ver_item.html', {'form': form, 'produto': produto})
+
+def item_inserido(request, produto_id):
+    produto = Produto.objects.get(id=produto_id)
+    if request.method == 'POST':
+        form = ItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            novo_item = form.save(commit=False)
+            novo_item.produto = produto
+            novo_item.save()
+            return redirect('produto_inserido', produto_id=produto.id)
+    else:
+        form = ItemForm()
+    return render(request, 'wear_swap/item_inserido.html', {'form': form, 'produto': produto})
+
+
+def itens_adicionados(request, produto_id):
+    produto = Produto.objects.get(id=produto_id)
+    itens = produto.item_set.all()  # Obtém todos os itens associados a este produto
+    return render(request, 'wear_swap/itens_adicionados.html', {'produto': produto, 'itens': itens})
 
 
 

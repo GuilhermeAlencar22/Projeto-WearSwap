@@ -5,7 +5,11 @@ from dotenv import load_dotenv
 # Construindo caminhos dentro do projeto como: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / '.env')
+# Construindo o caminho para o arquivo .env usando Path
+caminho_dotenv = BASE_DIR / '.env'
+
+# Carregando as variáveis de ambiente do arquivo .env
+load_dotenv(caminho_dotenv)
 
 # Define se o ambiente é de produção ou não, baseado na variável de ambiente TARGET_ENV
 TARGET_ENV = os.getenv('TARGET_ENV')

@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Detalhes do Produto Criado</h1>
+        <h1>Detalhes da Loja Criada</h1>
         <div class="product-details">
             <p>Loja: {{ produto.loja }}</p>
             <p>Categoria: {{ produto.categoria }}</p>
@@ -56,9 +56,14 @@
             <p>Descrição: {{ produto.descricao }}</p>
         </div>
         <div class="button-container">
-            <a href="{% url 'ver_item' produto_id=produto.id %}">
-                <button>Adicionar Item</button>
-            </a>
+            <br>
+            <br>
+            <br>
+            <a href="{% url 'ver_item' produto_id=produto.id %}"><button>Adicionar Item</button></a>
+            <br>
+            <br>
+            <br>
+            <a href="{% url 'itens_adicionados' produto_id=produto.id %}"><button>Ver Itens na Loja</button></a>
         </div>
     </div>
 </body>

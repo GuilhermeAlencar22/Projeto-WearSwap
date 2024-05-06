@@ -63,6 +63,9 @@ class Compra(models.Model):
         return f"Compra de {self.quantidade}x {self.produto.descricao} por {self.usuario.username} em {self.data_compra}"
 
 
+from django.db import models
+from .models import Produto
+
 class Item(models.Model):
     TIPOS_PRODUTO = (
         ('calca', 'Calça'),
@@ -83,4 +86,25 @@ class Item(models.Model):
     tamanho = models.CharField(max_length=5, choices=TIPOS_TAMANHO, null=True, blank=True)
     condicao = models.CharField(max_length=20)
     descricao = models.TextField()
+    preco = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)  # Adicionando o campo de preço
     foto = models.ImageField(upload_to='items', null=True, blank=True)
+
+
+
+class LojaItem(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    imagem = models.ImageField(upload_to='item_images')
+
+    def __str__(self):
+        return self.nome
+
+class ItemAdicionado(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    imagem = models.ImageField(upload_to='item_images')
+
+    def __str__(self):
+        return self.nome

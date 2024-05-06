@@ -110,7 +110,7 @@
         li {
             margin-bottom: 10px;
         }
-        a.button {
+        a.button, a.special-button {
             text-decoration: none;
             display: inline-block;
             padding: 10px 20px;
@@ -122,8 +122,14 @@
             font-size: 16px;
             margin-right: 10px;
         }
-        a.button:hover {
+        a.button:hover, a.special-button:hover {
             background-color: #0056b3; /* Azul mais escuro */
+        }
+        a.special-button { /* Estilo específico para 'Ver a Loja Criada' */
+            background-color: #28a745; /* Verde */
+        }
+        a.special-button:hover {
+            background-color: #218838; /* Verde mais escuro */
         }
         .cards {
             display: flex;
@@ -175,6 +181,8 @@
             <button type="submit">Pesquisar</button>
             <a href="{% url 'filtro' %}" class="button">Filtro de busca</a>
         </form>
+
+        
         
         <!-- Resultados da pesquisa -->
         {% if resultados %}
@@ -195,6 +203,10 @@
             <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
             
             <!-- Adicionando uma separação -->
+            <div style="margin-bottom: 10px;"></div>
+
+            <a href="{% url 'ver_loja_criada' produto_id %}">Ver Loja Criada</a>
+
             <div style="margin-bottom: 10px;"></div>
             
             <form method="GET" action="{% url 'configuracoes' %}">

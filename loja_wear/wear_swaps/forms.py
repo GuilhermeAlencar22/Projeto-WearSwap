@@ -18,4 +18,4 @@ class SearchForm(forms.Form):
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['tipo_produto', 'tamanho', 'condicao', 'descricao', 'foto']   
+        fields = ['tipo_produto', 'tamanho', 'condicao', 'descricao', 'foto', 'preco']  # Inclua o campo 'preco'

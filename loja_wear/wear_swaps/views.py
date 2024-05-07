@@ -209,6 +209,8 @@ def alterar_senha_view(request):
     return render(request, 'wear_swap/alterar_senha.html')
 
 
+
+
 def historico_compras(request):
     if request.user.is_authenticated:
         compras = Compra.objects.filter(usuario=request.user).order_by('-data_compra')

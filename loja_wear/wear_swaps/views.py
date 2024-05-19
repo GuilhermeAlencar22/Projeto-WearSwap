@@ -162,6 +162,17 @@ def itens_adicionados(request, produto_id):
     itens = produto.item_set.all()  # Obtém todos os itens associados a este produto
     return render(request, 'wear_swap/itens_adicionados.html', {'produto': produto, 'itens': itens})
 
+#def itens_adicionados(request, produto_id):
+    #produto = Produto.objects.get(id=produto_id)
+    #itens = produto.item_set.all()
+    #return render(request, 'wear_swap/itens_adicionados.html', {'produto': produto, 'itens': itens})
+#from django.shortcuts import render, get_object_or_404, redirect
+
+#def apagar_item(request, item_id):
+    #item = get_object_or_404(Item, id=item_id)
+    #produto_id = item.produto.id
+    #item.delete()
+    #return redirect('itens_adicionados', produto_id=produto_id)
 
 
 def filtro(request):

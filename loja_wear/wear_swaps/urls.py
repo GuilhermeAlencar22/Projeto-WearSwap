@@ -25,6 +25,7 @@ urlpatterns = [
     path('ajuda/', views.ajuda_view, name='ajuda'),
     path('item/inserir/<int:produto_id>/', views.item_inserido, name='item_inserido'),
     path('itens/<int:produto_id>/', views.itens_adicionados, name='itens_adicionados'),
+    # path('apagar_item/<int:item_id>/', views.apagar_item, name='apagar_item')
 ]
 
 if settings.DEBUG:

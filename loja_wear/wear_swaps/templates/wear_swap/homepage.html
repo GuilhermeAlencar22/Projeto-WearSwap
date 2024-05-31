@@ -6,9 +6,9 @@
     <title>Homepage</title>
     <style>
         body {
-            background-color: #f0f8ff; /* Azul claro */
-            color: #333; /* Cor do texto */
-            font-family: Arial, sans-serif; /* Fonte do texto */
+            background-color: #f0f8ff;
+            color: #333;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -19,13 +19,13 @@
         }
         h1 {
             font-size: 36px;
-            color: #333; /* Cor do título */
+            color: #333;
             text-align: left;
             margin-top: 0;
         }
         h2 {
             font-size: 24px;
-            color: #333; /* Cor do título */
+            color: #333;
             margin-top: 30px;
         }
         form {
@@ -44,7 +44,7 @@
             display: block;
             width: 30px;
             height: 5px;
-            background-color: #fff;
+            background-color: #333;
             position: fixed;
             top: 20px;
             left: 20px;
@@ -57,7 +57,7 @@
             display: block;
             width: 30px;
             height: 5px;
-            background-color: #fff;
+            background-color: #333;
             position: absolute;
             left: 0;
             transition: transform 0.3s ease;
@@ -92,15 +92,15 @@
         }
         button[type="submit"] {
             padding: 10px 20px;
-            background-color: #007bff; /* Azul */
-            color: #fff; /* Cor do texto */
+            background-color: #007bff;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
         button[type="submit"]:hover {
-            background-color: #0056b3; /* Azul mais escuro */
+            background-color: #0056b3;
         }
         ul {
             list-style-type: none;
@@ -114,8 +114,8 @@
             text-decoration: none;
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff; /* Azul */
-            color: #fff; /* Cor do texto */
+            background-color: #007bff;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -123,13 +123,13 @@
             margin-right: 10px;
         }
         a.button:hover, a.special-button:hover {
-            background-color: #0056b3; /* Azul mais escuro */
+            background-color: #0056b3;
         }
-        a.special-button { /* Estilo específico para 'Ver a Loja Criada' */
-            background-color: #28a745; /* Verde */
+        a.special-button {
+            background-color: #28a745;
         }
         a.special-button:hover {
-            background-color: #218838; /* Verde mais escuro */
+            background-color: #218838;
         }
         .cards {
             display: flex;
@@ -165,15 +165,19 @@
     </style>
 </head>
 <body>
+    <div class="menu-icon" onclick="toggleMenu()"></div>
     <div class="container">
         <h1>Página Inicial</h1>
 
-        <div class="menu-icon" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        
+        <!-- Mensagens de sucesso ou erro -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         <!-- Formulário de pesquisa -->
         <form method="GET" action="">
             {% csrf_token %}
@@ -182,22 +186,39 @@
             <a href="{% url 'filtro' %}" class="button">Filtro de busca</a>
         </form>
 
+        <!-- Filtro por categoria -->
+        <form method="GET" action="">
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria">
+                <option value="">Todas</option>
+                {% for key, value in categorias %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
         
-        
-        <!-- Resultados da pesquisa -->
-        {% if resultados %}
-        <h2>Resultados da Pesquisa:</h2>
+        <!-- Produtos filtrados por categoria -->
+        {% if itens %}
+        <h2>Produtos</h2>
         <div class="cards">
-            {% for produto in resultados %}
+            {% for item in itens %}
             <div class="card">
-                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
-                <h3>{{ produto.nome }}</h3>
-                <p>{{ produto.descricao }}</p>
+                <img src="{{ item.foto.url }}" alt="{{ item.tipo_produto }}">
+                <h3>{{ item.tipo_produto }}</h3>
+                <p>{{ item.descricao }}</p>
+                <p>Preço: {{ item.preco }}</p>
+                <p>Condição: {{ item.condicao }}</p>
+                <p>Tamanho: {{ item.tamanho }}</p>
+                <form method="POST" action="{% url 'adicionar_ao_carrinho' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Adicionar ao Carrinho</button>
+                </form>
             </div>
             {% endfor %}
         </div>
         {% endif %}
-
+        
         <!-- Menu suspenso -->
         <div class="menu" id="menu">
             <a href="{% url 'ver_produto' %}" class="button">Criar loja</a>
@@ -212,20 +233,14 @@
             <form method="GET" action="{% url 'configuracoes' %}">
                 <button type="submit" class="button">Configurações</button>
             </form>
-        
-            <!-- Adicionando uma separação -->
-            <div style="margin-bottom: 10px;"></div>
-        
-            <form method="POST" action="{% url 'login' %}">
+            <form method="POST" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="button">Sair</button>
             </form>
-        
-            <!-- Adicionando uma separação -->
-            <div style="margin-bottom: 10px;"></div>
-        
             <a href="{% url 'ajuda' %}" class="button">Ajuda</a>
+            <a href="{% url 'carrinho' %}" class="button">Ver Carrinho</a>
         </div>
+    </div>
 
     <script>
         function toggleMenu() {

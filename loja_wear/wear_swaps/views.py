@@ -107,7 +107,13 @@ def adicionar_ao_carrinho(request, item_id):
 def ver_carrinho(request):
     carrinho, created = Carrinho.objects.get_or_create(usuario=request.user)
     itens_carrinho = ItemCarrinho.objects.filter(usuario=request.user)
-    return render(request, 'wear_swap/carrinho.html', {'itens_carrinho': itens_carrinho})
+    
+    if not itens_carrinho.exists():
+        mensagem = "Seu carrinho está vazio."
+    else:
+        mensagem = ""
+        
+    return render(request, 'wear_swap/carrinho.html', {'itens_carrinho': itens_carrinho, 'mensagem': mensagem})
 
 def register_view(request):
     if request.method == 'POST':

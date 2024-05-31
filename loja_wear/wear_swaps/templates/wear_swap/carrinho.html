@@ -44,18 +44,28 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
         .remove-button {
             background-color: #dc3545;
         }
         .remove-button:hover {
             background-color: #c82333;
         }
+        .message {
+            color: red;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Carrinho</h1>
-        {% load custom_filters %}
+        {% if mensagem %}
+        <p class="message">{{ mensagem }}</p>
+        {% else %}
         <table>
             <thead>
                 <tr>
@@ -72,7 +82,7 @@
                     <td>{{ item.item.descricao }}</td>
                     <td>{{ item.quantidade }}</td>
                     <td>{{ item.item.preco }}</td>
-                    <td>{{ item.quantidade|mul:item.item.preco }}</td>
+                    <td>{{ item.quantidade|floatformat:2 }}</td>
                     <td>
                         <form method="POST" action="{% url 'remover_do_carrinho' item.id %}">
                             {% csrf_token %}
@@ -83,9 +93,10 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
         <div class="buttons">
             <a href="{% url 'homepage' %}" class="button">Continuar Comprando</a>
-            <a href="{% url 'checkout' %}" class="button">Finalizar Compra</a>
+            <a href="{% url 'checkout' %}" class="button" {% if not itens_carrinho %}disabled{% endif %}>Finalizar Compra</a>
         </div>
     </div>
 </body>

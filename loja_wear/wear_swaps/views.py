@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegisteredUser, Produto, ClothingItem, Compra, Item, ItemCarrinho, Carrinho
-from .forms import ProdutoForm, SearchForm, ItemForm
+from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm  # Importando CheckoutForm
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
@@ -28,7 +28,27 @@ def login_view(request):
         return render(request, 'wear_swap/login.html')
 
 def checkout_view(request):
-    return render(request, 'wear_swap/checkout.html')
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            # Processar o formulário e salvar os dados
+            nome_completo = form.cleaned_data['nome_completo']
+            endereco = form.cleaned_data['endereco']
+            cidade = form.cleaned_data['cidade']
+            estado = form.cleaned_data['estado']
+            cep = form.cleaned_data['cep']
+            forma_pagamento = form.cleaned_data['forma_pagamento']
+            numero_cartao = form.cleaned_data['numero_cartao']
+            validade_cartao = form.cleaned_data['validade_cartao']
+            cvv_cartao = form.cleaned_data['cvv_cartao']
+
+            # Salvar a compra no banco de dados (você precisa criar a lógica para isso)
+
+            messages.success(request, 'Compra realizada com sucesso!')
+            return redirect('compra_sucesso')
+    else:
+        form = CheckoutForm()
+    return render(request, 'wear_swap/checkout.html', {'form': form})
 
 def remover_do_carrinho(request, item_id):
     item = get_object_or_404(ItemCarrinho, id=item_id)
@@ -218,3 +238,6 @@ def delete_account(request):
 def account_deleted(request):
     message = messages.get_messages(request)
     return render(request, 'account_deleted.html', {'messages': message})
+
+def compra_sucesso_view(request):
+    return render(request, 'wear_swap/compra_sucesso.html')

@@ -4,7 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from . import views
-from .views import delete_account, ver_item, ver_loja_criada, ver_carrinho
+from .views import (
+    delete_account, ver_item, ver_loja_criada, ver_carrinho, compra_sucesso_view
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +30,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='homepage'), name='logout'),
     path('checkout/', views.checkout_view, name='checkout'),
     path('remover_do_carrinho/<int:item_id>/', views.remover_do_carrinho, name='remover_do_carrinho'),
+    path('compra_sucesso/', compra_sucesso_view, name='compra_sucesso'),
 ]
 
 if settings.DEBUG:

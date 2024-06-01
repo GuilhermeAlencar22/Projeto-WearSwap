@@ -1,3 +1,4 @@
+# forms.py
 from django import forms
 from .models import Produto, Item, Denuncia
 
@@ -18,7 +19,7 @@ class CheckoutForm(forms.Form):
     nome_completo = forms.CharField(max_length=100)
     endereco = forms.CharField(max_length=255)
     cidade = forms.CharField(max_length=100)
-    estado = forms.CharField(max_length=100)
+    estado = forms.CharField(max_length=100)  # Corrigido aqui
     cep = forms.CharField(max_length=10)
     forma_pagamento = forms.ChoiceField(choices=[
         ('boleto', 'Boleto'),
@@ -36,3 +37,6 @@ class EditItemForm(forms.ModelForm):
 
 class DenunciaForm(forms.Form):
     denuncia = forms.CharField(widget=forms.Textarea, label='Descrição da Denúncia')
+
+class NegociacaoForm(forms.Form):
+    novo_preco = forms.DecimalField(max_digits=10, decimal_places=2)

@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from . import views
 from .views import (
-    delete_account, ver_item, ver_loja_criada, ver_carrinho, compra_sucesso_view, denunciar_produto, denuncia_sucesso_view
+    delete_account, ver_item, ver_loja_criada, ver_carrinho, compra_sucesso_view, denunciar_produto, denuncia_sucesso_view, negociacao_view, negociacao_sucesso_view
 )
 
 urlpatterns = [
@@ -33,6 +33,8 @@ urlpatterns = [
     path('compra_sucesso/', views.compra_sucesso_view, name='compra_sucesso'),
     path('denunciar_produto/', views.denunciar_produto, name='denunciar_produto'),
     path('denuncia_sucesso/', views.denuncia_sucesso_view, name='denuncia_sucesso'),
+    path('negociacao/<int:item_id>/', negociacao_view, name='negociacao'),
+    path('negociacao_sucesso/', negociacao_sucesso_view, name='negociacao_sucesso'),
 ]
 
 if settings.DEBUG:

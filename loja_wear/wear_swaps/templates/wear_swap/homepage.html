@@ -1,3 +1,4 @@
+<!-- wear_swap/templates/wear_swap/homepage.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -212,11 +213,15 @@
                 <p>Preço: {{ item.preco }}</p>
                 <p>Condição: {{ item.condicao }}</p>
                 <p>Tamanho: {{ item.tamanho }}</p>
+                <br>
                 <form method="POST" action="{% url 'adicionar_ao_carrinho' item.id %}">
                     {% csrf_token %}
                     <button type="submit">Adicionar ao Carrinho</button>
                 </form>
                 <a href="{% url 'denunciar_produto' %}" class="button">Denunciar Produto</a>
+                <br>
+                <br>
+                <a href="{% url 'negociacao' item.id %}" class="button">Negociar</a>
             </div>
             {% endfor %}
         </div>
@@ -242,6 +247,7 @@
                 <button type="submit" class="button">Sair</button>
             </form>
             <a href="{% url 'ajuda' %}" class="button">Ajuda</a>
+            <br>
             <a href="{% url 'carrinho' %}" class="button">Ver Carrinho</a>
         </div>
     </div>

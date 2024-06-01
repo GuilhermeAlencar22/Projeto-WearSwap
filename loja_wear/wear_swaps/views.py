@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegisteredUser, Produto, ClothingItem, Compra, Item, ItemCarrinho, Carrinho
-from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm, EditItemForm, DenunciaForm
+from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm, EditItemForm, DenunciaForm, NegociacaoForm
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
@@ -279,3 +279,19 @@ def denunciar_produto(request):
 
 def denuncia_sucesso_view(request):
     return render(request, 'wear_swap/denuncia_sucesso.html')
+
+def negociacao_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    if request.method == 'POST':
+        form = NegociacaoForm(request.POST)
+        if form.is_valid():
+            novo_preco = form.cleaned_data['novo_preco']
+            # Aqui você pode processar a negociação, como salvar o novo preço, enviar uma notificação, etc.
+            messages.success(request, 'Negociação realizada com sucesso!')
+            return redirect('negociacao_sucesso')
+    else:
+        form = NegociacaoForm()
+    return render(request, 'wear_swap/negociacao.html', {'form': form, 'item': item})
+
+def negociacao_sucesso_view(request):
+    return render(request, 'wear_swap/negociacao_sucesso.html')

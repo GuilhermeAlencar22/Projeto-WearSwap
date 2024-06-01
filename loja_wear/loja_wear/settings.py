@@ -17,7 +17,7 @@ NOT_PROD = not TARGET_ENV.lower().startswith('prod1')
 
 if NOT_PROD:
     # Configurações para ambiente de desenvolvimento
-    DEBUG = True 
+    DEBUG = True
     SECRET_KEY = '<i5ym7c@%0r$0ljr099n9bvlz0x!lgu9%j9y0v!#j6-wbif_k%v>'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '169.254.129.4']
     DATABASES = {
@@ -117,7 +117,9 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATICFILES_DIRS = [BASE_DIR/'static']
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATIC_URL = os.getenv('DJANGO_STATIC_URL', "/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

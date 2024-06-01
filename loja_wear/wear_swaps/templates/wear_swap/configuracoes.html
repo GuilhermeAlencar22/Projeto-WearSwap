@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,11 +49,8 @@
 <body>
     <div class="container">
         <h1>Configurações</h1> 
-        <div class="config-option" onclick="location.href='URL_DA_MINHA_LOJA'">Minha Loja</div>
-        <div class="config-option" onclick="location.href='URL_DADOS_PESSOAIS'">Dados Pessoais</div>
+        <div class="config-option"><a href="{% url 'ver_loja_criada' produto_id %}"><button>Sua loja</button></a></div>
         <div class="config-option"><a href="{% url 'alterar_senha' %}">Alterar Senha</a></div>
-        <div class="config-option" onclick="location.href='URL_CARTAO_CREDITO'">Cartão de Crédito</div>
-        <div class="config-option" onclick="location.href='URL_NOTIFICACOES'">Notificações</div>
         <div class="config-option">
             <form action="{% url 'delete_account' %}" method="post">
                 {% csrf_token %}

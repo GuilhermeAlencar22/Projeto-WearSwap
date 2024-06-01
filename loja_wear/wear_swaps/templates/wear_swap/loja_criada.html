@@ -43,6 +43,29 @@
         .product-details p:nth-child(odd) {
             background-color: #f0f0f0;
         }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -56,14 +79,9 @@
             <p>Descrição: {{ produto.descricao }}</p>
         </div>
         <div class="button-container">
-            <br>
-            <br>
-            <br>
             <a href="{% url 'ver_item' produto_id=produto.id %}"><button>Adicionar Item</button></a>
-            <br>
-            <br>
-            <br>
             <a href="{% url 'itens_adicionados' produto_id=produto.id %}"><button>Ver Itens na Loja</button></a>
+            <a href="{% url 'configuracoes' %}"><button>Configurações</button></a>
         </div>
     </div>
 </body>

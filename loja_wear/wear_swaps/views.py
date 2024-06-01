@@ -208,7 +208,13 @@ def clothing_list(request):
     return render(request, 'clothing/clothing_list.html', {'clothing_items': clothing_items})
 
 def configuracoes_view(request):
-    return render(request, 'wear_swap/configuracoes.html')
+    try:
+        ultimo_produto = Produto.objects.latest('id')
+        produto_id = ultimo_produto.id
+    except Produto.DoesNotExist:
+        produto_id = None
+
+    return render(request, 'wear_swap/configuracoes.html', {'produto_id': produto_id})
 
 @login_required
 def alterar_senha_view(request):

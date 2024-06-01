@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegisteredUser, Produto, ClothingItem, Compra, Item, ItemCarrinho, Carrinho
-from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm, EditItemForm
+from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm, EditItemForm, DenunciaForm
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
@@ -266,3 +266,17 @@ def account_deleted(request):
 
 def compra_sucesso_view(request):
     return render(request, 'wear_swap/compra_sucesso.html')
+
+def denunciar_produto(request):
+    if request.method == 'POST':
+        form = DenunciaForm(request.POST)
+        if form.is_valid():
+            # Processar a denúncia aqui
+            messages.success(request, 'Denúncia enviada com sucesso!')
+            return redirect('denuncia_sucesso')
+    else:
+        form = DenunciaForm()
+    return render(request, 'wear_swap/denunciar_produto.html', {'form': form})
+
+def denuncia_sucesso_view(request):
+    return render(request, 'wear_swap/denuncia_sucesso.html')

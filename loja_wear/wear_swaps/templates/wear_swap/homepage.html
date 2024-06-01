@@ -1,3 +1,4 @@
+<!-- homepage.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,6 +215,7 @@
                     {% csrf_token %}
                     <button type="submit">Adicionar ao Carrinho</button>
                 </form>
+                <a href="{% url 'denunciar_produto' %}" class="button">Denunciar Produto</a>
             </div>
             {% endfor %}
         </div>

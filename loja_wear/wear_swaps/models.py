@@ -136,3 +136,11 @@ class ItemCarrinho(models.Model):
 
     def __str__(self):
         return f"{self.item.descricao} - {self.quantidade} unidade(s)"
+
+class Denuncia(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    motivo = models.CharField(max_length=255)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.motivo

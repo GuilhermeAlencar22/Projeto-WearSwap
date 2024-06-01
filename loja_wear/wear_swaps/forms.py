@@ -1,5 +1,5 @@
 from django import forms
-from .models import Produto, Item
+from .models import Produto, Item, Denuncia
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
@@ -33,3 +33,6 @@ class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['descricao', 'preco']
+
+class DenunciaForm(forms.Form):
+    denuncia = forms.CharField(widget=forms.Textarea, label='Descrição da Denúncia')

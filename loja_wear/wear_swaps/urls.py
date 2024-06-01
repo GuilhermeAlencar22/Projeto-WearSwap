@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from . import views
 from .views import (
-    delete_account, ver_item, ver_loja_criada, ver_carrinho, compra_sucesso_view
+    delete_account, ver_item, ver_loja_criada, ver_carrinho, compra_sucesso_view, denunciar_produto, denuncia_sucesso_view
 )
 
 urlpatterns = [
@@ -13,7 +13,7 @@ urlpatterns = [
     path('', views.login_view, name='login'),
     path('homepage/', views.homepage, name='homepage'),
     path('register/', views.register_view, name='register'),
-    path('ver_produto/', views.ver_produto, name="ver_produto" ),
+    path('ver_produto/', views.ver_produto, name='ver_produto'),
     path('produto_inserido/<int:produto_id>/', views.produto_inserido, name='produto_inserido'),
     path('ver_loja_criada/<int:produto_id>/', views.ver_loja_criada, name='ver_loja_criada'),
     path('filtro/', views.filtro, name='filtro'),
@@ -30,7 +30,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='homepage'), name='logout'),
     path('checkout/', views.checkout_view, name='checkout'),
     path('remover_do_carrinho/<int:item_id>/', views.remover_do_carrinho, name='remover_do_carrinho'),
-    path('compra_sucesso/', compra_sucesso_view, name='compra_sucesso'),
+    path('compra_sucesso/', views.compra_sucesso_view, name='compra_sucesso'),
+    path('denunciar_produto/', views.denunciar_produto, name='denunciar_produto'),
+    path('denuncia_sucesso/', views.denuncia_sucesso_view, name='denuncia_sucesso'),
 ]
 
 if settings.DEBUG:

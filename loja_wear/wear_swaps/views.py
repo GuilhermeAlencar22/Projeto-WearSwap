@@ -139,16 +139,9 @@ def ajuda_view(request):
 
 def ver_produto(request):
     if request.method == "POST":
-        form = ProdutoForm(request.POST)
+        form = ProdutoForm(request.POST, request.FILES)
         if form.is_valid():
-            novo_produto = Produto(
-                loja=form.cleaned_data['loja'],
-                categoria=form.cleaned_data['categoria'],
-                estado=form.cleaned_data['estado'],
-                preco=form.cleaned_data['preco'],
-                descricao=form.cleaned_data['descricao']
-            )
-            novo_produto.save()
+            novo_produto = form.save()
             return redirect('produto_inserido', produto_id=novo_produto.id)
         else:
             return render(request, 'wear_swap/ver_produto.html', {'form': form})

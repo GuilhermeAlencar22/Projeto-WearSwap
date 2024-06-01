@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegisteredUser, Produto, ClothingItem, Compra, Item, ItemCarrinho, Carrinho
-from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm  # Importando CheckoutForm
+from .forms import ProdutoForm, SearchForm, ItemForm, CheckoutForm, EditItemForm
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.utils.html import escape
+from django.forms import ModelForm
 
 def login_view(request):
     if request.method == 'POST':
@@ -110,10 +111,12 @@ def ver_carrinho(request):
     
     if not itens_carrinho.exists():
         mensagem = "Seu carrinho está vazio."
+        pode_finalizar = False
     else:
         mensagem = ""
+        pode_finalizar = True
         
-    return render(request, 'wear_swap/carrinho.html', {'itens_carrinho': itens_carrinho, 'mensagem': mensagem})
+    return render(request, 'wear_swap/carrinho.html', {'itens_carrinho': itens_carrinho, 'mensagem': mensagem, 'pode_finalizar': pode_finalizar})
 
 def register_view(request):
     if request.method == 'POST':
@@ -187,9 +190,25 @@ def item_inserido(request, produto_id):
     return render(request, 'wear_swap/item_inserido.html', {'form': form, 'produto': produto})
 
 def itens_adicionados(request, produto_id):
-    produto = Produto.objects.get(id=produto_id)
+    produto = get_object_or_404(Produto, id=produto_id)
     itens = produto.item_set.all()
-    return render(request, 'wear_swap/itens_adicionados.html', {'produto': produto, 'itens': itens})
+
+    if request.method == 'POST':
+        form = EditItemForm(request.POST)
+        if form.is_valid():
+            item_id = request.POST.get('item_id')
+            item = get_object_or_404(Item, id=item_id)
+            item.descricao = form.cleaned_data['descricao']
+            item.preco = form.cleaned_data['preco']
+            item.save()
+            messages.success(request, 'Item atualizado com sucesso!')
+            return redirect('itens_adicionados', produto_id=produto_id)
+
+    return render(request, 'wear_swap/itens_adicionados.html', {
+        'produto': produto,
+        'itens': itens,
+        'form': EditItemForm(),
+    })
 
 def clothing_list(request):
     clothing_items = ClothingItem.objects.all()

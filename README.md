@@ -83,3 +83,8 @@
     <a  href="https://youtu.be/j6zi1DKcz7Y?si=llioqqGdBM7A5MiF"
       >Screencast - (Testes)</a 
     >   
+# **Entrega 4:**
+<li>
+    <a href="https://docs.google.com/document/d/1VoSmRHUXhYcSziMONYizhnP_ndf3lRg2o5CRLTg9xys/edit?usp=sharing"
+      >Diagrama de Atividades</a
+    >

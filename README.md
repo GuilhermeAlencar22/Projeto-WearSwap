@@ -89,3 +89,7 @@
     <a href="https://docs.google.com/document/d/1VoSmRHUXhYcSziMONYizhnP_ndf3lRg2o5CRLTg9xys/edit?usp=sharing"
       >Diagrama de Atividades</a
     >
+<li>
+    <a href="https://export-download.canva.com/6mDl0/DAGG7h6mDl0/81/0-3095528850541380256.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJHKNGJLC2J7OGJ6Q%2F20240602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240602T201532Z&X-Amz-Expires=72166&X-Amz-Signature=46694f7cda934e32633eb8ac27686c9bc7b4f366f04b2af9963c371e3278887f&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27Apresenta%25C3%25A7%25C3%25A3o%2520comercial%2520para%2520empresas%2520moderna%2520azul.pdf&response-expires=Mon%2C%2003%20Jun%202024%2016%3A18%3A18%20GMT"
+      >Slide </a
+    >

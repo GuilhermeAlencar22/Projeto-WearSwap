@@ -41,4 +41,4 @@ class DenunciaForm(forms.Form):
 class NegociacaoForm(forms.Form):
     novo_preco = forms.DecimalField(max_digits=10, decimal_places=2)
 
-#coment 
+#coment 1234567

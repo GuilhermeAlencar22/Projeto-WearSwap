@@ -93,3 +93,7 @@
     <a href="https://www.canva.com/design/DAGG7h6mDl0/AsQ4cuf3DDJDsTwBI42hSQ/edit?utm_content=DAGG7h6mDl0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
       >Slide </a
     >
+<li>
+    <a href="https://docs.google.com/document/d/13cplHf7vnj4GIrR6njQb2ArJ4wAgjNwqRCpa0B36mbQ/edit?usp=sharing"
+      >Programação em Par </a
+    >

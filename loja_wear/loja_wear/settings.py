@@ -13,7 +13,7 @@ load_dotenv(caminho_dotenv)
 
 # Define se o ambiente é de produção ou não, baseado na variável de ambiente TARGET_ENV
 TARGET_ENV = os.getenv('TARGET_ENV')
-NOT_PROD = not TARGET_ENV.lower().startswith('prod1')
+NOT_PROD = not (TARGET_ENV and TARGET_ENV.lower().startswith('prod'))
 
 if NOT_PROD:
     # Configurações para ambiente de desenvolvimento
@@ -121,7 +121,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_URL = os.getenv('DJANGO_STATIC_URL', "/static/")
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
